@@ -1,0 +1,347 @@
+
+<!-- saved from url=(0106)https://payments.juspay.in/web/2023-02-06_18:13:40_cf1d649fe3a0ebdcaad7112c1f5222a77a456c1b/appIframe.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script>
+  /////// Key to send New Logs
+  window.sendNewLogs = false;
+  /////// End
+  function receiveMessage(event) {
+    var data = JSON.parse(event.data);
+    if (data.name == "startApp") {
+      
+
+      var hasLocalStorage = true;
+      try {
+        typeof window.localStorage !== undefined;
+      } catch(e){
+        hasLocalStorage = false;
+      }
+      
+      var payload = (data.payload);
+      var order_details = JSON.parse(decodeURIComponent(payload.signature_payload));
+
+      var sdk = ((window.location.href.split("/appIframe")[0]).split("web/")[1])? ((window.location.href.split("/appIframe")[0]).split("web/")[1]) :""
+      
+      var key = [
+        "guid",
+        String(payload.merchant_id),
+        String(order_details.order_id),
+        String(order_details.timestamp),
+      ].join(":");
+      var key_sn = [
+        "sn",
+        String(payload.merchant_id),
+        String(order_details.order_id),
+        String(order_details.timestamp),
+      ].join(":");
+
+      var key_pageId = [
+        "pageId",
+        String(payload.merchant_id),
+        String(order_details.order_id),
+        String(order_details.timestamp),
+      ].join(":");
+
+
+      var sn = 0;
+
+      if (hasLocalStorage){
+        
+        var session_id = payload.session_id
+        localStorage.setItem(key, session_id);
+        localStorage.setItem(key_sn,0);
+        localStorage.setItem(key_pageId,0);
+
+      }
+      else{
+        var session_id = payload.session_id
+      }
+      ////// New Logs Start
+      if (window.sendNewLogs){
+
+      if (data.fallback){
+
+      var fallback_log = {
+        category: "lifecycle",
+        subcategory: "web",
+        at : unixTime(),
+        sn: ++sn,
+        log_version: "2.0.0",
+        service: "hyper_web",
+        label: "safe_mode",
+        level: "info",
+        session_id : session_id,
+        value: {
+          safe_mode:true
+        }
+      };
+      if ( navigator.sendBeacon){
+        navigator.sendBeacon(
+        "https://logs.juspay.in/godel/analytics",
+        JSON.stringify({ data: [fallback_log] })
+      );
+      }
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+        
+      }
+      var start_app_render = {
+        category: "lifecycle",
+        subcategory: "web",
+        at : unixTime(),
+        sn: ++sn,
+        log_version: "2.0.0",
+        service: "hyper_web",
+        label: "start_app_rendered",
+        level: "info",
+        session_id : session_id,
+        value: {
+          data:unixTime()
+        }
+      };
+      if ( navigator.sendBeacon){
+        navigator.sendBeacon(
+        "https://logs.juspay.in/godel/analytics",
+        JSON.stringify({ data: [start_app_render] })
+      );
+      }
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+
+      var start_app_payload ={
+        category: "lifecycle",
+        subcategory: "web",
+        at : unixTime(),
+        sn: ++sn,
+        log_version: "2.0.0",
+        service: "hyper_web",
+        label: "start_app_payload",
+        level: "info",
+        session_id : session_id,
+        value: {
+          data: payload
+        }
+      }
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+
+      var context_logs = {
+        category: "context",
+        subcategory: "web",
+        at : unixTime(),
+        sn: ++sn,
+        log_version: "2.0.0",
+        service: "hyper_web",
+        label: "context_logs",
+        level: "info",
+        session_id : session_id,
+        value: {
+          user_agent:navigator?navigator.userAgent : "",
+          sdk_version:sdk,
+          config_version : "0.0"
+
+        }
+      }
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+      if ( navigator.sendBeacon){
+        navigator.sendBeacon(
+        "https://logs.juspay.in/godel/analytics",
+        JSON.stringify({ data: [start_app_payload,context_logs] })
+      );
+      }
+    }
+
+      ////// New Logs End
+      var logData0 = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "start_app_rendered",
+        pageId: 0,//localStorage.getItem(key_pageId),
+        session_id: session_id,
+        sn: ++sn,// localStorage.getItem(key_sn),
+        type: "event",
+        value: JSON.stringify({
+          amount: order_details.amount,
+          merchant_id: payload.merchant_id,
+          order_id: order_details.order_id
+        })
+      };
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+
+      if ( navigator.sendBeacon){
+        navigator.sendBeacon(
+        "https://logs.juspay.in/godel/analytics",
+        JSON.stringify({ data: [logData0] })
+      );
+      }
+      else{
+        // try {
+        //   var xhr = new XMLHttpRequest();
+        //   xhr.open("POST",  "https://logs.juspay.in/godel/analytics", true); // third parameter of `false` means synchronous
+        //   xhr.send(JSON.stringify({ data: [logData0] }));   
+        // } catch(err) {
+        //   //
+        // }
+      }
+
+      
+      var logData = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "startAppURL",
+        pageId: 0,//localStorage.getItem(key_pageId),
+        session_id: session_id,
+        sn: ++sn,// localStorage.getItem(key_sn),
+        type: "event",
+        value: data.url,
+      };
+
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+      var sdkVersion= ((window.location.href.split("/appIframe")[0]).split("web/")[1])? ((window.location.href.split("/appIframe")[0]).split("web/")[1]) :""
+      console.log("sdkVersion",sdkVersion)
+      var logData1 = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "startAppSDKVersion",
+        pageId: 0,
+        session_id: session_id,
+        sn: ++sn,
+        type: "event",
+        value: sdkVersion,
+      };
+
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+      var logData2 = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "startAppUserAgent",
+        pageId: 0,//localStorage.getItem(key_pageId),
+        session_id: session_id,
+        sn: ++sn,// localStorage.getItem(key_sn),
+        type: "event",
+        value: navigator.userAgent,
+      };
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+      var logData3 = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "startAppPayload",
+        pageId: 0,//localStorage.getItem(key_pageId),
+        session_id: session_id,
+        sn: ++sn,// localStorage.getItem(key_sn),
+        type: "event",
+        value: JSON.stringify(payload),
+      };
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+
+
+
+
+      var logData4 = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "choosen_track",
+        pageId: 0,//localStorage.getItem(key_pageId),
+        session_id: session_id,
+        sn: ++sn,// localStorage.getItem(key_sn),
+        type: "event",
+        value:data.choosen_track,
+      };
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+
+      var logData5 = {
+        action: "info",
+        at: new Date().getTime(),
+        category: "hyperpay",
+        label: "loaded_track",
+        pageId: 0,//localStorage.getItem(key_pageId),
+        session_id: session_id,
+        sn: ++sn,// localStorage.getItem(key_sn),
+        type: "event",
+        value: data.loaded_track,
+      };
+      if (hasLocalStorage){
+        localStorage.setItem(key_sn,parseInt(localStorage.getItem(key_sn))+1)
+      }
+
+
+
+      const logsArr = [logData,logData1,logData2,logData3];
+      const logsArr2= [logData4, logData5];
+
+      
+
+
+      if ( navigator.sendBeacon){
+        navigator.sendBeacon(
+        "https://logs.juspay.in/godel/analytics",
+        JSON.stringify({ data: logsArr })
+      );
+
+      navigator.sendBeacon(
+        "https://logs.juspay.in/godel/analytics",
+        JSON.stringify({ data: logsArr2 })
+      );
+      }
+      else{
+        // try {
+        //   var xhr = new XMLHttpRequest();
+        //   xhr.open("POST",  "https://logs.juspay.in/godel/analytics", false); // third parameter of `false` means synchronous
+        //   xhr.send(JSON.stringify({ data: logsArr }));   
+        // } catch(err) {
+        //   //
+        // }
+      }
+      var eve = data.fallback ? "appIframeFallBack" : "appIframeLogsSent"
+      var eventData = {
+        event: eve,
+        url: data.url,
+        integration: data.integration,
+        entry_point_id: data.entry_point_id,
+        session_id: session_id,
+        sn:++sn,
+        payload : payload
+      };
+      parent.postMessage(eventData, "*");
+      
+      
+    }
+  }
+  window.addEventListener("message", receiveMessage, false);
+function unixTime(){
+ return (new Date()).toISOString()
+}
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+}
+parent.postMessage({event : "appIframeInit"}, "*");
+</script>
+</head><body><style>.tb_button {padding:1px;cursor:pointer;border-right: 1px solid #8b8b8b;border-left: 1px solid #FFF;border-bottom: 1px solid #fff;}.tb_button.hover {borer:2px outset #def; background-color: #f8f8f8 !important;}.ws_toolbar {z-index:100000} .ws_toolbar .ws_tb_btn {cursor:pointer;border:1px solid #555;padding:3px}   .tb_highlight{background-color:yellow} .tb_hide {visibility:hidden} .ws_toolbar img {padding:2px;margin:0px}</style></body></html>
