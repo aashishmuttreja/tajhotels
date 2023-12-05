@@ -205,7 +205,7 @@ function initSdk(name) {
 		  var cbrecommend = "";
 		  
 		  console.log(chatMess.messages.length);
-		  console.log('LocalStorage' + localStorage)
+		  console.log('LocalStorage' + localStorage.email)
 		  for (let i = 0; i < chatMess.messages.length-2; i++) {
 			//console.log(chatMess.messages[i].messagePayload.text);
 			
