@@ -4376,11 +4376,11 @@ $( document ).ready(function() {
   cartcnt[3].innerText = localStorage.childcnt;
 
   const cartprice = document.getElementsByClassName("room-amount");
-  cartprice[0].innerText = localStorage.roomrate.substring(2);
+  cartprice[0].innerText = localStorage.roomrater.substring(2);
 
   const summprice = document.getElementsByClassName("summary-charges-item-value");
-  summprice[0].innerText = localStorage.roomrate;
-  summprice[4].lastElementChild.innerHTML = Number(localStorage.roomrate.replace(",","").substr(2))+ 4482;
+  summprice[0].innerText = localStorage.roomrater;
+  summprice[4].lastElementChild.innerHTML = Number(localStorage.roomrater.replace(",","").substr(2))+ 4482;
 
   const roomimg = document.getElementsByClassName("cart-room-image");
   roomimg[0].lastElementChild.currentSrc = localStorage.roomimg;
