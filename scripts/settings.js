@@ -282,12 +282,12 @@ function initSdk(name) {
 				//console.log(gchatMess.messages[i].messagePayload.text);
 			//}
 		}
-		
+		console.log("Email - " + cbemail);
 		ORA.click({
 					"sendSessionInfo": true,
 					"data": {
 					  "ora.z_action": "chatbot",
-					  "ora.z_email":  "kumar.rp1215@gmail.com", 
+					  "ora.z_email":  cbemail, 
 					  "ora.z_mobile": cbmobile,
 					  "ora.z_enquire": cbenquire,
 					  "ora.z_custtype": cbcusttype,
