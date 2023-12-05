@@ -285,12 +285,12 @@ var myWishlist = function(a) {
       let _mobile = document.getElementById("MOBILE_NUMBER_").value.trim();
 	  
 	  const roomDet = {
-A:"Taj Madikeri Resort & Spa|Superior Cottage|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Superior_Charm_3x2-03.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 22,400", 
-B:"Taj Madikeri Resort & Spa|Deluxe Cottage|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Deluxe_Delight_Room_3x2-02.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 24,900", 
-C:"Taj Madikeri Resort & Spa|Premium Villa|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Premium_Indulgence_Room_Web_3x2-04.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 32,700",
-D:"Taj Madikeri Resort & Spa|Two Bedroom Family Suite Queen Bed|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/new-images/DSC_6259_60_61.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 70,000",
-E:"Taj Madikeri Resort & Spa|Two Bedroom Family Suite Queen and Twin Bed|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/new-images/DSC_6295_6_7.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 70,000",
-F:"Taj Madikeri Resort & Spa|Luxury Pool Villa|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Bliss_Villa_3x2-04.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 70,000"
+A:"Taj Madikeri Resort & Spa|Superior Cottage|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Superior_Charm_3x2-03.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 22,400|22400", 
+B:"Taj Madikeri Resort & Spa|Deluxe Cottage|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Deluxe_Delight_Room_3x2-02.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 24,900|24900", 
+C:"Taj Madikeri Resort & Spa|Premium Villa|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Premium_Indulgence_Room_Web_3x2-04.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 32,700|32700",
+D:"Taj Madikeri Resort & Spa|Two Bedroom Family Suite Queen Bed|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/new-images/DSC_6259_60_61.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 70,000|70000",
+E:"Taj Madikeri Resort & Spa|Two Bedroom Family Suite Queen and Twin Bed|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/new-images/DSC_6295_6_7.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 70,000|70000",
+F:"Taj Madikeri Resort & Spa|Luxury Pool Villa|https://www.tajhotels.com/content/dam/luxury/hotels/taj-madikeri-coorg/images/Retreat/Bliss_Villa_3x2-04.jpg/jcr:content/renditions/cq5dam.web.512.512.jpeg|₹ 96,400|96400"
 };
 		
 		if(x == "A"){
@@ -317,7 +317,11 @@ F:"Taj Madikeri Resort & Spa|Luxury Pool Villa|https://www.tajhotels.com/content
         localStorage.sbt='sbt';
 		localStorage.roomtype = roomArr[1];
 		localStorage.roomimg = roomArr[2];
-        localStorage.roomrate = roomArr[3];
+        localStorage.roomrate = roomArr[4];
+		localStorage.roomrater = roomArr[3];
+		localStorage.chkdates = cdates[0].innerText.trim();
+		localStorage.chkindate = cdates[0].innerText.substring(0,12).trim();
+		localStorage.chkoutdate = cdates[0].innerText.substring(14);
         localStorage.indate = cdates[0].innerText.substring(0,2);
         localStorage.outdate = cdates[0].innerText.substring(14,16);
         localStorage.adultscnt = roomcnt[0].childNodes[1].textContent.substr(2,1);
@@ -338,7 +342,15 @@ F:"Taj Madikeri Resort & Spa|Luxury Pool Villa|https://www.tajhotels.com/content
 				"ora.z_hotelname": roomArr[0],
 				"ora.z_roomtype": roomArr[1],
 				"ora.z_roomimg": roomArr[2],
-				"ora.z_roomrate": roomArr[3]
+				"ora.z_roomrate": roomArr[3],
+				"ora.z_checked_in_date": localStorage.chkindate,
+				"ora.z_checked_out_date": localStorage.chkoutdate,
+				"ora.z_adult_count": localStorage.adultscnt,
+				"ora.z_child_count": localStorage.childcnt,
+				"ora.z_chkdates": localStorage.chkdates,
+				"ora.z_indate":  localStorage.indate,
+				"ora.z_outdate": localStorage.outdate,
+				"ora.z_roomrater": localStorage.roomrater
             }
           });
 		 }
