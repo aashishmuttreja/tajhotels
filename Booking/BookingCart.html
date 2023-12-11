@@ -1490,7 +1490,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div id="inclusive-taxes">Inclusive of all taxes.</div>
 						<button class="more-rates-button cm-btn-secondary" style="width: 150px;" onclick="cartAbd()" data-view-details="open"> Abandon </button>
 						<button class="more-rates-button cm-btn-secondary" onclick="cartbooking()" data-view-details="open"> Book </button>
-    				</div>
+    				<div><br>
+						<button class="more-rates-button cm-btn-secondary" style="width: 150px;" onclick="chkinOffers()" data-view-details="open"> Checkin Offers </button>
+					</div>
+				</div>
     			</div>
                 <div class="summary-soldout-message" style="display: none;">
                     <div class="summary-of-soldout-rooms"></div>
@@ -4458,6 +4461,25 @@ $( document ).ready(function() {
           });
 		 }
       ,500);
+   };
+   //NEW ADDTION
+	var chkinOffers = function(){
+  			
+		alert("Pushed Check In Offers");
+		
+        setTimeout(()=> {
+		//alert(roomArr[1]);
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "ora.z_action": "chkinOffers",
+                "ora.z_email": localStorage.email,
+		"ora.z_tag_id": 4,
+		"ora.z_event_trigger": "RealTime"
+            }
+          });
+		 }
+      ,50);
    };
 
 </script>
