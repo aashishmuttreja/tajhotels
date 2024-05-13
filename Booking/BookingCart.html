@@ -4385,8 +4385,7 @@ $( document ).ready(function() {
   summprice[0].innerText = localStorage.roomrater;
   summprice[4].lastElementChild.innerHTML = Number(localStorage.roomrater.replace(",","").substr(2))+ 4482;
 
-  const roomimg = document.querySelector("body > div > div:nth-child(2) > main > div.content-wrapper.container.cart-layout > div:nth-child(2) > div > div > div.cart-selected-rooms-container.col-9.col-md-9.col-lg-9.col-sm-12 > div.cart-selected-rooms-card-container > div > div.cart-selected-rooms-content > div.cart-room-image > img").src; 
-	  //document.getElementsByClassName("cart-room-image");
+  const roomimg = document.getElementsByClassName("cart-room-image");
   roomimg[0].lastElementChild.currentSrc = localStorage.roomimg;
   
   var nuechk = document.getElementById("nuecheck");
