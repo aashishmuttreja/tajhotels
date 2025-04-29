@@ -4397,6 +4397,7 @@ $( document ).ready(function() {
 		
         setTimeout(()=> {
 		//alert(roomArr[1]);
+		var eventid = Date.now();
           ORA.click({
             "sendSessionInfo": true,
             "data": {
@@ -4418,6 +4419,7 @@ $( document ).ready(function() {
 				"ora.z_outdate": localStorage.outdate,
 				"ora.z_roomrater": localStorage.roomrater,
 				"ora.z_tag_id": 2,
+		    "ora.z_eventid": eventid,
 		    "ora.z_event_trigger": "RealTime"
             }
           });
@@ -4447,6 +4449,7 @@ setTimeout(()=> {
 		}
         setTimeout(()=> {
 		//alert(roomArr[1]);
+		var eventid = Date.now();
           ORA.click({
             "sendSessionInfo": true,
             "data": {
@@ -4469,6 +4472,7 @@ setTimeout(()=> {
 				"ora.z_outdate": localStorage.outdate,
 				"ora.z_roomrater": localStorage.roomrater,
 				"ora.z_tag_id": 3,
+		    "ora.z_eventid": eventid,
 		    "ora.z_event_trigger": "RealTime"
             }
           });
