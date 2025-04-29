@@ -4423,6 +4423,19 @@ $( document ).ready(function() {
           });
 		 }
       ,50);
+setTimeout(()=> {
+		//alert(roomArr[1]);
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "ora.z_action": "abandon",
+                "ora.z_email": localStorage.email,
+		"ora.z_tag_id": "CE",
+		"ora.z_event_trigger": "RealTime"
+            }
+          });
+		 }
+      ,10000);
    };
    var cartbooking = function(){
   			
