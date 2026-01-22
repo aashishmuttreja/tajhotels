@@ -4367,6 +4367,7 @@ $( document ).ready(function() {
 <script type="text/javascript" src="https://d.oracleinfinity.io/infy/acs/account/8f18b0c3da08493b195f72e2f165b96a/js/titan_tag/odc.js"></script>
 <script>
   //Rajesh
+  const pageLoadTime = new Date();
   const bcdates = document.getElementsByClassName("small-text");
   bcdates[0].nextSibling.innerText = localStorage.indate;
   bcdates[1].nextSibling.innerText = localStorage.outdate;
@@ -4394,6 +4395,8 @@ $( document ).ready(function() {
   var cartAbd = function(){
   			
 		alert("Booking cancelled");
+	  const eventclicktime = new Date();
+	  const timetaken = (eventclicktime - pageLoadTime) / 1000;
 		
         setTimeout(()=> {
 		//alert(roomArr[1]);
@@ -4419,8 +4422,11 @@ $( document ).ready(function() {
 				"ora.z_outdate": localStorage.outdate,
 				"ora.z_roomrater": localStorage.roomrater,
 				"ora.z_tag_id": 2,
-		    "ora.z_eventid": eventid,
-		    "ora.z_event_trigger": "RealTime"
+			    "ora.z_eventid": eventid,
+			    "ora.z_event_trigger": "RealTime",
+				"ora.z_eventclicktime": eventclicktime,
+				"ora.z_pageLoadTime": pageLoadTime,
+				"ora.z_timetaken": timetaken
             }
           });
 		 }
@@ -4432,8 +4438,8 @@ setTimeout(()=> {
             "data": {
                 "ora.z_action": "CE",
                 "ora.z_email": localStorage.email,
-		"ora.z_tag_id": "2",
-		"ora.z_event_trigger": "RealTime"
+				"ora.z_tag_id": "2",
+				"ora.z_event_trigger": "RealTime"
             }
           });
 		 }
@@ -4442,6 +4448,9 @@ setTimeout(()=> {
    var cartbooking = function(){
   			
 		alert("Booking Successful");
+	   const eventclicktime = new Date();
+	   const timetaken = (eventclicktime - pageLoadTime) / 1000;
+	   
 		if (nuechk.checked){
 			nuepass = "ENROLL" ;
 		} else{
@@ -4472,8 +4481,11 @@ setTimeout(()=> {
 				"ora.z_outdate": localStorage.outdate,
 				"ora.z_roomrater": localStorage.roomrater,
 				"ora.z_tag_id": 3,
-		    "ora.z_eventid": eventid,
-		    "ora.z_event_trigger": "RealTime"
+			    "ora.z_eventid": eventid,
+			    "ora.z_event_trigger": "RealTime",
+				"ora.z_eventclicktime": eventclicktime,
+				"ora.z_pageLoadTime": pageLoadTime,
+				"ora.z_timetaken": timetaken
             }
           });
 		 }
@@ -4496,6 +4508,8 @@ setTimeout(()=> {
 	var chkinOffers = function(){
   			
 		alert("Pushed Check In Offers");
+		const eventclicktime = new Date();
+	    const timetaken = (eventclicktime - pageLoadTime) / 1000;
 		
         setTimeout(()=> {
 		//alert(roomArr[1]);
@@ -4504,8 +4518,12 @@ setTimeout(()=> {
             "data": {
                 "ora.z_action": "chkinOffers",
                 "ora.z_email": localStorage.email,
-		"ora.z_tag_id": 4,
-		"ora.z_event_trigger": "RealTime"
+				"ora.z_tag_id": 4,
+				"ora.z_event_trigger": "RealTime",
+				"ora.z_eventclicktime": eventclicktime,
+				"ora.z_pageLoadTime": pageLoadTime,
+				"ora.z_timetaken": timetaken
+				
             }
           });
 		 }
